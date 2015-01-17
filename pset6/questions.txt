@@ -1,0 +1,57 @@
+0.  What is pneumonoultramicroscopicsilicovolcanoconiosis?
+    Huh)) After googling. an artificial long word said to mean a lung disease caused by inhaling very fine ash and sand dust. 
+
+1.  According to its man page, what does getrusage do?
+    Returns resource usage.
+
+2.  Per that same man page, how many members are in a variable of type struct rusage?
+    Struct rusage have 16 parameters(14 long and 2 structs timeval).
+
+3.  Why do you think we pass before and after by reference (instead of by value) to calculate, even though we’re not changing their contents?
+    Pass parameters by reference is more efficient than by value, because they don't need allocate memory and time to create a copy of parameters.
+
+4.  Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, convince us that you indeed understand how that function’s for loop works.
+        For-loop on line 76, take character by character from 'fp' to int 'c'.
+    Next, if-condition check 'c' for alphabetical character or apostrophes,
+    if it isn't first character in word. In if condition on line 79, character
+    writing from 'c' to index-plases of word. After, in line 86 condition check
+    word for maxlenght, if index > LENGHT, while-loop(line 89) skip all next characters
+    in 'fp' to the EOF or non-alphabetical character.
+        If condition in line 79 return false, we going to line 97 for digit checking. If isdigit(c) 
+    return true while-loop(line 100) skip it to the EOF or non-alphanumeric character.
+        Last part of for-loop (line 76) is 'else if' (line 107) condition '(index>0)'
+    will work if c is equal whitespaces characters(like \n, \0, space).
+    Add \n to word, ++counter 'words', check word for misspelling in line 117.
+    If word is misspelled, in stdout we see this word('if-condition' on lines 124-128)
+        If word will more than LENGHT, consist non-alpabetical character or digital,
+    than word will skip and index setup to 0 (line 92, 103).
+
+5.  Why do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with a format string like "%s" to read whole words at a time? Put another way, what problems might arise by relying on fscanf alone?
+    With fscanf() we can't check character by character for right input.
+    With fgets() we take one char at a time, and can check each input character according to our rules. 
+
+6.  Why do you think we declared the parameters for check and load as const?
+    These parameters is constant pointers to the 'word' and 'dictionary'.
+    In load and check functions it is read-only parameters, and should not be changed.
+    this declaring of parameters as 'const' is helpful for program protection against accidental errors.
+
+7.  What data structure(s) did you use to implement your spell-checker? Be sure not to leave your answer at just "hash table," "trie," or the like. Expound on what’s inside each of your "nodes."
+    I use a trie structures. Each structures have a bool flag is_word. 
+    This flag are cheking then we check a last char in word from text. If false - word is misspelled.
+    Second parameter of each node is a array of pointers to struct node- recursive structure of data.
+    Each node consist of bool flag and 27 the same node.
+    I choose trie, because I think that search in trie structure more fasters than in linked list structure.
+    
+8.  How slow was your code the first time you got it working correctly?
+    I can't scrollback more 1000 lines in terminal, but in valgrind first varian work 14 sec.
+    Without valgrind 0.3-0.5 sec. Now 0.09 sec.
+
+9.  What kinds of changes, if any, did you make to your code over the course of the week in order to improve its performance?
+    I make unload function little bit faster, after modification recursive subroutine(change a loop).
+    And may be some minor changes.
+
+10. Do you feel that your code has any bottlenecks that you were not able to chip away at?
+    I can't find few bytes of leak. May be unload doesn't work properly.
+    In gdb after free all structures, address of root and all childrens[0] doesn't equal to NULL.
+    I can't fix it. If I put free(root) directly in unload function, after recursion function, than i have segfault.
+

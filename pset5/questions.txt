@@ -1,0 +1,67 @@
+0.  How many different colors does each format support?
+    BMP:    32bit - more than 4billion
+    GIF:    8bit - 256 colors
+    JPEG:   24bit - 16 million
+    PNG:    24bit - 16 million
+    
+1.  Which of these formats supports animation?
+    GIF
+    
+2.  What’s the difference between lossy and lossless compression?
+    Lossless algorithm of compression gives better quality of pictures.
+    When we use a lossy compression, we lose some details on a pictures.
+
+3.  Which of these formats is lossy-compressed?
+    JPEG
+    
+4.  What happens, technically speaking, when a file is deleted on a FAT file system?
+    When file is deleted, OS erases information about file's clusters from address tables, but file's data stay on the hard drive.
+
+5.  What can someone like you do to ensure (with high probability) that files you delete cannot be recovered?
+    If I'm selling disk: For first, erase drive's data. Second, owerwrite harddrive by useless data.
+    For destruction of data: I'll make watches from the hard drive:)
+
+6.  What’s stdint.h?
+    It is a header file. stdint.h is declares few integer types and macros, like uint8_t, int32_t and so on.
+
+7.  What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+    In case of pset5, we use this type for matching with data types from Win32.
+
+8.  How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively? (Assume a 32-bit architecture like the CS50 Appliance.)
+    BYTE    1byte
+    DWORD   4bytes
+    LONG    4bytes
+    WORD    2bytes
+    
+9.  What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? (Leading bytes used to identify file formats (with high probability) are generally called "magic numbers.)"
+    First 2 bytes have a type WORD and name bfType - define filetype and must be BM(0x4D42).
+
+10. What’s the difference between bfSize and biSize?
+    bfSize - size of bitmap of file in bytes.
+    biSize - the number of bytes required by the structure BITMAPINFOHEADER.
+
+11. What does it mean if biHeight is negative?
+    If biHeight is negative, the bitmap is a top-down DIB.
+
+12. What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+    biBitCount determines the number of bits that define each pixel and the maximum number of colors in the bitmap.
+
+13. Why might fopen return NULL in copy.c:37?
+    If fopen can't open(or create) the file, than return NULL, we can use it for indication of error(copy.c:38-43).
+
+14. Why is the third argument to fread always 1 in our code?
+    I think it because the copy.c copying files piese by piese(size of one piese = 2nd argument of fread).
+
+15. What value does copy.c:70 assign padding if bi.biWidth is 3?
+    paddig is equal 3; 
+    3 pixel * 3 bytes = 9, 9 %4 =1, (4-1)%4=3.
+
+16. What does fseek do?
+    fseec() sets the file position data for given stream.
+    In case of copy.c -  fseek shift cursor on padding's value from current position.
+
+17. What is SEEK_CUR?
+    SEEK_CUR is a flag of current position. Options of fseek() : Seek from the current location.
+    
+18. Whodunit?
+    Milo Banana dun it.
